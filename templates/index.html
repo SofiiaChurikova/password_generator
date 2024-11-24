@@ -1,23 +1,50 @@
 {% extends 'base.html' %} {% block head %}
 <title>Password Generator</title>
 {% endblock %} {% block body %}
-<h1>Password Generator</h1>
-{% if not password %}
-<form method="POST" action="/">
-  <div class="info-group">
-    <label for="letters">How many letters?</label>
-    <input type="text" name="letters" id="letters" required />
-    <label for="symbols">How many symbols?</label>
-    <input type="text" name="symbols" id="symbols" required />
-    <label for="numbers">How many numbers?</label>
-    <input type="text" name="numbers" id="numbers" required />
+<div class="container">
+  <div class="form-box">
+    <h1>Password Generator</h1>
+    {% if not password %}
+    <form method="POST" action="/">
+      <div class="info-group">
+        <input
+          type="text"
+          name="letters"
+          id="letters"
+          placeholder=" "
+          required
+        />
+        <label for="letters">How many letters?</label>
+      </div>
+      <div class="info-group">
+        <input
+          type="text"
+          name="symbols"
+          id="symbols"
+          placeholder=" "
+          required
+        />
+        <label for="symbols">How many symbols?</label>
+      </div>
+      <div class="info-group">
+        <input
+          type="text"
+          name="numbers"
+          id="numbers"
+          placeholder=" "
+          required
+        />
+        <label for="numbers">How many numbers?</label>
+      </div>
+      <button type="submit" class="generate-button">Generate</button>
+    </form>
+    {% else %}
+    <h2>Your Generated Password:</h2>
+    <p class="password">{{ password }}</p>
+    <form method="GET" action="/">
+      <button type="submit">Reset</button>
+    </form>
+    {% endif %}
   </div>
-  <button type="submit" class="generate-button">Generate</button>
-</form>
-{% else %}
-<h2>Your Generated Password:</h2>
-<p>{{ password }}</p>
-<form method="GET" action="/">
-  <button type="submit">Reset</button>
-</form>
-{% endif %} {% endblock %}
+</div>
+{% endblock %}
